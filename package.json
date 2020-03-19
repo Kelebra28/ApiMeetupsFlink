@@ -1,0 +1,19 @@
+{
+  "name": "apiflink",
+  "version": "1.0.0",
+  "description": "Rest API to do Meetups",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Kelebra28/ApiMeetupsFlink.git"
+  },
+  "author": "Kelebra28",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Kelebra28/ApiMeetupsFlink/issues"
+  },
+  "homepage": "https://github.com/Kelebra28/ApiMeetupsFlink#readme"
+}

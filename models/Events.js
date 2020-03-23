@@ -16,7 +16,6 @@ const EventSchema = mongoose.Schema({
     place : {
         type: mongoose.Schema.Types.ObjectId,
         ref: 'Place',
-        require: true
     },
     attendants: [{
         type: mongoose.Schema.Types.ObjectId,

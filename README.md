@@ -1,6 +1,6 @@
 # Meetups Flink REST API
 
-Esta Api esta creada con Node.js , express, cors, body-parce, mongoose, nodemon, dotenv y para la bade de datos utlice MongoDB NoSql por el motivo que no los modelos que use, no era necesario tantas relaciones por lo cual una NoSql quedaria perfecto.
+Esta Api esta creada con Node.js , express, cors, body-parce, mongoose, nodemon, dotenv, JTK y para la bade de datos utlice MongoDB NoSql por el motivo que no los modelos que use, no era necesario tantas relaciones por lo cual una NoSql quedaria perfecto.
 
 Para ponder usar el Api de manera local tenemos que clonar el repositorio, ir a la terminal en donde se clono y poner el comdando *npm i* para que istale todas las dependecias que se utilzaron, despues *npm start*
 
@@ -74,5 +74,73 @@ Esto les regresara un token
 
 Para ver que nuestro usuario esta autentificado tenemos que hacer un GET, donde le vamos a pasar el Token que genera una vez que se creo el usuario.
 
+![Postman Auth](/imgREADME/sendToken.png)
+
+
+Para suscribirlo a un evento es un PATCH para actualizar el evento, pasando el ID de Evento y en el body mandamos email y password para poder añadir al usuario.
+
+![Postman Suscribe](/imgREADME/sucribe.png)
+
+
+
+Para ver los usuarios en paginacion es con un metodo GET ,
+en donde en los parametros pasaremos un *page* (Cada 10 user es una nueva pagina), y el limit que es el limite de usuarios que qeremos(Puede ser el numero que sea) o podemos pasarlo directamente desde la URL.\
+**http://localhost:4000/user/paginationUser?page=1&limit10**
+![Postman pagination](/imgREADME/pagination.png)
+
+Para hacer el login utilizamos el metodo POST y en el body mandamos el email y password.
+![Postman login](/imgREADME/login.png)
+
+
+## Event
+
+Par crear el evento es parecido al usiario, tenemos que meter un email y cotraseña para que el evento que se ha creado tenga un alfitreon, el startHour y endHour se envian en la forma estadarizada de fecha,
+Si te tiene un lugar se envia el sigiente fragmento dentro del json
+el *_id* es el que se genera una vez creado el lugar.
+
+~~~json
+"place" : "_id"
+~~~
+
+
+![Postman CreateUser](/imgREADME/createEvent.png)
+
+
+## Place
+
+Para crar un Lugar pasamos lo siguiente en el body, al igual que el evento se necesita un usuario para poder crearlo.
+
+
+![Postman CreateUser](/imgREADME/createPlace.png)
+
+
+
+# Optener todos la Data
+Simpelemte utilizamos el metodo GET y en la URL que es lo que queremos obtener,
+Solo hay que cambiar la ruta para obtener los difentes datos.\
+
+**http://localhost:4000/user/**\
+**http://localhost:4000/event/**\
+**http://localhost:4000/place/**\
+![Postman updateUser](/imgREADME/getAll.png)
+
+# Update
+
+Si desean actualizar el usuario, evento o lugar usamos el metodo PATCH , en la ruta pasaremos el _id del usuario, evento o lugar(Generado por mongoDB) que deamos modificar. En el body lo que deseamos modificar.\
+**http://localhost:4000/user/_id**\
+**http://localhost:4000/event/_id**\
+**http://localhost:4000/place/_id**
+![Postman updateUser](/imgREADME/updateUser.png)
+
+
+
+
+# Delete
+Por ultimo para borrar a un usario, lugar , envento utlizamos el metodo DELETE y en el URL le pasaremos el _id del usuario, lugar o evento.\
+**http://localhost:4000/user/_id** \
+**http://localhost:4000/event/_id**\
+**http://localhost:4000/place/_id**
+
+![Postman deleteUSer](/imgREADME/deleteUser.png)
 
 

@@ -6,7 +6,7 @@ const cors = require('cors');
 const userRoutes = require('./controllers/user');
 const eventRoutes = require('./controllers/events');
 const placeRoutes = require('./controllers/place');
-const PORT = process.env.PORT || 5000
+const PORT = 4000 //process.env.PORT || 
 require('dotenv/config');
 
 
@@ -25,7 +25,7 @@ app.get('/', (req, res) =>{
 
 
 //Conext to Mongo
-mongoose.connect('mongodb+srv://Kelebra28:FlinkTest@cluster0-4gajq.mongodb.net/test?retryWrites=true&w=majority', { useNewUrlParser: true, useUnifiedTopology: true }, () => {
+mongoose.connect(process.env.DB_CONNECTION, { useNewUrlParser: true, useUnifiedTopology: true }, () => {
     console.log('All rigth to conecto DB');
 });
 

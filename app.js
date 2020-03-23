@@ -6,6 +6,7 @@ const cors = require('cors');
 const userRoutes = require('./controllers/user');
 const eventRoutes = require('./controllers/events');
 const placeRoutes = require('./controllers/place');
+const PORT = 4000 //process.env.PORT || 
 require('dotenv/config');
 
 
@@ -28,4 +29,4 @@ mongoose.connect(process.env.DB_CONNECTION, { useNewUrlParser: true, useUnifiedT
     console.log('All rigth to conecto DB');
 });
 
-app.listen(4000); 
+app.listen(PORT, () => console.log(`Listening on ${ PORT }`));

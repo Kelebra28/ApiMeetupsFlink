@@ -34,15 +34,15 @@ const UserSchema = mongoose.Schema({
     creadorEvent: {
       type : Boolean,
       require: true
-    },
+    }, 
     assitEvent: {
         type : Boolean,
         require: true
     },
-    events:{
+    events:[{
         type: mongoose.Schema.Types.ObjectId,
         ref:'Events'
-    },
+    }],
     tokens: [{
         token: {
             type: String,

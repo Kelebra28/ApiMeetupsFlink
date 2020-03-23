@@ -6,13 +6,17 @@ const EventSchema = mongoose.Schema({
         required :  true
     },
     hours : {
-        type: Date,
+        type: String,
         require : true
     },
     where : {
         type: mongoose.Schema.Types.ObjectId,
         ref: 'Place'
     },
+    asistente: [{
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'User'
+    }]
    
 });
 

@@ -9,7 +9,14 @@ npm i
 
 npm start
 ~~~~
+Crearemos un archivo .env para poner las siguientes variables de entiorno:
 
+~~~~
+DB_CONNECTION=mongodb+srv://<User>:<Password>@cluster0-4gajq.mongodb.net/test?retryWrites=true&w=majority
+JWT_KEY=FlinkTest
+
+
+~~~~
 
 En *app.js* es nustro servidor, vamos a imporar todas nuestra depencias para que podamos usar los diferente endPoit y conectarnos a la base de datos,
 

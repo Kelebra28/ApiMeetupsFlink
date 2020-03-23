@@ -1,14 +1,35 @@
 const express = require('express');
 const router = express.Router();
 const Event = require('../models/Events');
+const User = require('../models/User');
 
 
 //Create a new event
-router.post('createEvent', async (req, res) =>{
+router.post('/createEvent', async (req, res) =>{
     try{
-        const event = new Event(req.body)
+        const { 
+            email,
+            password,
+            title,
+            startHour,
+            endHour,
+            place,
+            } = req.body
+        const user = await User.findByCredentials(email, password)
+        .catch(err => console.log(err))
+        if (!user) {
+            return res.status(401).send({error: 'Login failed!'})
+        }
+        console.log(user);
+        const event = new Event({
+            title,
+            startHour: new Date(startHour),
+            endHour: new Date(endHour),
+            place,
+            organizer: user._id
+        })
         await event.save()
-        res.status(201).send(event)
+        res.json(event)
     }catch(err){
         res.json({
             message: err
@@ -46,7 +67,7 @@ router.patch('/:eventId', async (req, res) =>{
             { _id : req.params.eventId },
             { $set: { where : req.body.where}}
             );
-        res.json(updateUser)
+        res.json(updateEvent)
     }catch(err){
         res.json({
             message: err
@@ -66,6 +87,30 @@ router.delete('/:eventId', async (req, res) => {
             message: err
         });
     };
+});
+
+
+//Subcribe event
+router.patch('/suscribe/:eventId' , async( req, res) =>{
+    try{
+        const { eventId } = req.params;
+        const { password, email } = req.body;
+        const user = await User.findByCredentials(email, password)
+        .catch(err => console.log(err))
+        if (!user) {
+            return res.status(401).send({error: 'Login failed!'})
+        }
+        // const subscribedUser = await Event.attendants.map()
+        // if(){
+
+        // }
+        Event.findByIdAndUpdate(eventId,{$push:{attendants: [user._id]}},{ new: true }).exec()
+        res.status(200).send({message:'User subscribe',event:event})
+    }catch(err){
+        res.json({
+            message: err
+        });
+    }
 });
 
 

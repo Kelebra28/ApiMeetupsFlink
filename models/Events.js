@@ -5,18 +5,27 @@ const EventSchema = mongoose.Schema({
         type: String,
         required :  true
     },
-    hours : {
-        type: String,
+    startHour : {
+        type: Date,
         require : true
     },
-    where : {
-        type: mongoose.Schema.Types.ObjectId,
-        ref: 'Place'
+    endHour : {
+        type: Date,
+        require : true
     },
-    asistente: [{
+    place : {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'Place',
+        require: true
+    },
+    attendants: [{
         type: mongoose.Schema.Types.ObjectId,
         ref: 'User'
-    }]
+    }],
+    organizer : {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'User'
+    }
    
 });
 

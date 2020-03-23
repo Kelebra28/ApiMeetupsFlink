@@ -20,11 +20,10 @@ router.post('/createUsers', async (req, res) => {
 router.post('/login', async(req, res) => {
     try {
         const { email, password } = req.body
-        console.log(email,password);
         const user = await User.findByCredentials(email, password)
         .catch(err => console.log(err))
         if (!user) {
-            return res.status(401).send({error: 'Login failed! Check authentication credentials'})
+            return res.status(401).send({error: 'Login failed!'})
         }
         const token = await user.generateAuthToken()
         res.send({ user, token })
@@ -138,7 +137,6 @@ router.patch('/:userId', async (req, res) =>{
         });
     };
 });
-
 //Delete User
 router.delete('/:userId', async (req, res) => {
     try{

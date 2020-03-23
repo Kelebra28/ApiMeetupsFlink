@@ -25,7 +25,7 @@ app.get('/', (req, res) =>{
 
 
 //Conext to Mongo
-mongoose.connect(process.env.DB_CONNECTION, { useNewUrlParser: true, useUnifiedTopology: true }, () => {
+mongoose.connect('mongodb+srv://Kelebra28:FlinkTest@cluster0-4gajq.mongodb.net/test?retryWrites=true&w=majority', { useNewUrlParser: true, useUnifiedTopology: true }, () => {
     console.log('All rigth to conecto DB');
 });
 
